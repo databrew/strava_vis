@@ -32,20 +32,6 @@ setwd('..')
 #     append=TRUE)
 mykey <- Sys.getenv("google_key")
 
-# # Get athlete
-# joe <- get_athlete(stoken = stoken,
-#                    id = 20562211)
-
-# Get all the people joe is following
-# following <- get_following(following = 'friends',
-#                            stoken = stoken,
-#                            id = 20562211,
-#                            All = TRUE)
-
-# Get ids of all those who im following
-# ids <- unlist(lapply(following, function(x){x$id}))
-# names <-  unlist(lapply(following, function(x){paste(x$firstname, x$lastname)}))
-
 # Get all friends activities
 friends_activities <- get_activity_list(stoken = stoken,
                                     # id = ids[239],
@@ -124,8 +110,6 @@ if(!'data.feather' %in% dir('data')){
 
 # Get new data
 activity_ids <-
-  # c(seq(1110000000, 1110020000, by = 1))
-  # c(seq(100000000, 1110000000, by = 1))
   1110000000:(1110000000-10000000)
 
 # Filter down to those not already in my database
@@ -261,3 +245,18 @@ ll_from_activity_ids(activity_ids = activity_ids,
 #                                   id = NULL,
 #                                   club = FALSE,
 #                                   friends = TRUE)
+
+
+# # Get athlete
+# joe <- get_athlete(stoken = stoken,
+#                    id = 20562211)
+
+# Get all the people joe is following
+# following <- get_following(following = 'friends',
+#                            stoken = stoken,
+#                            id = 20562211,
+#                            All = TRUE)
+
+# Get ids of all those who im following
+# ids <- unlist(lapply(following, function(x){x$id}))
+# names <-  unlist(lapply(following, function(x){paste(x$firstname, x$lastname)}))

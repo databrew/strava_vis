@@ -120,7 +120,7 @@ leaf_country <- function(location,
   
   l <- leaflet() %>%
     addProviderTiles(provider = 'CartoDB.DarkMatter',
-                     options = providerTileOptions(opacity = 0.95))
+                     options = providerTileOptions(opacity = 1))
   captured_activities <- sub_data %>%
     group_by(activity_id) %>%
     tally %>%
@@ -132,10 +132,10 @@ leaf_country <- function(location,
     }
   }
   the_alpha <- ifelse(length(captured_activities) > 50,
-                      0.4,
+                      0.2,
                       ifelse(length(captured_activities) > 100,
                              0.3,
-                             0.5))
+                             0.1))
   for (i in 1:length(captured_activities)){
     message(i)
     this_activity_id <- captured_activities[i]
@@ -197,6 +197,7 @@ for(i in 1:length(all_cities)){
   file_name <- gsub('(', '', file_name, fixed = TRUE)
   file_name <- gsub(')', '', file_name, fixed = TRUE)
   file_name <- gsub(',', '_', file_name, fixed = TRUE)
+  file_name <- gsub("'", "", file_name, fixed = TRUE)
   assign(file_name,
          leaf_country(location = this_city,
                       city = TRUE))
